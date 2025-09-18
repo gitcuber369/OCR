@@ -1,7 +1,6 @@
 import { useScanStore } from "@/store/useScanResult";
-import { router } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const Details = () => {
   const selectedScanId = useScanStore((s) => s.selectedScanId);
@@ -20,11 +19,15 @@ const Details = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Scan Details</Text>
       {scan.thumbnailUri ? (
-        <Image source={{ uri: scan.thumbnailUri }} style={styles.image} />
+        <Image
+          source={{ uri: scan.thumbnailUri }}
+          style={styles.fullImage}
+          resizeMode="contain"
+        />
       ) : (
         <View style={styles.imagePlaceholder} />
       )}
-      <Text style={styles.numbers}>{scan.numbers.join(", ")}</Text>
+      <Text style={styles.numbers}>{scan.numbers.join(" ")}</Text>
       <Text style={styles.timestamp}>
         {new Date(scan.timestamp).toLocaleString()}
       </Text>
@@ -48,12 +51,13 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     textAlign: "center",
   },
-  image: {
-    width: 200,
-    height: 200,
+  fullImage: {
+    width: "90%",
+    height: 320,
     borderRadius: 16,
     marginBottom: 24,
     backgroundColor: "#333",
+    alignSelf: "center",
   },
   imagePlaceholder: {
     width: 200,

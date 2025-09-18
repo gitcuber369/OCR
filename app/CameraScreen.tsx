@@ -1,7 +1,7 @@
 // ...existing imports and component code...
+import { useScanStore } from "@/store/useScanResult";
 import ImageEditor from "@react-native-community/image-editor";
 import { router } from "expo-router";
-import { useScanStore } from "@/store/useScanResult";
 import React, { useRef, useState } from "react";
 import {
   Dimensions,
